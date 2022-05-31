@@ -1,0 +1,43 @@
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    color: rgba(0,0,0,.9);
+    /* border-bottom-color: blue; */
+    /* border-bottom: 20px; */
+    border-bottom: 3px solid var(--supernova) !important;
+}
+
+.navbar-brand{
+    font-family: "Muli-ExtraBoldItalic"
+}
+
+.logo{
+    top: 3px;
+    position: relative;
+    left: -9px;
+    
+}
+
+.brand-text{
+    color: var(--heavy-metal);
+    font-family: var(--font-family-muli-extrabolditalic);
+    font-size: 1.35rem;
+    font-style: italic;
+    font-weight: 800;
+    position: relative;
+top: 12px;
+}
+
+.navbar{
+    background-color: white !important;
+}
+
+.collapse:not(.show) {
+    justify-content: end;
+}
+
+.nav-link {
+    margin-right: 1.7rem !important;
+    font-size: 22px;
+}
+
+
+

@@ -1,0 +1,21 @@
+:root { 
+  --bright-sun: #ffd641;
+  --buttery-white: #fef9ea;
+  --dove-gray: #6e6e6e;
+  --dove-gray-2: #707070;
+  --heavy-metal: #2b2b2b;
+  --supernova: #ffcb0c;
+  --white: #ffffff;
+ 
+  --font-size-l: 37px;
+  --font-size-m: 32px;
+  --font-size-s: 22px;
+  --font-size-xl: 40px;
+  --font-size-xs: 20px;
+  --font-size-xxl: 42px;
+  --font-size-xxxl: 52px;
+ 
+  --font-family-muli-bold: "Muli-Bold", Helvetica;
+  --font-family-muli-extrabolditalic: "Muli-ExtraBoldItalic", Helvetica;
+}
+

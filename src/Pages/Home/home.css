@@ -1,0 +1,41 @@
+.contactless-img{
+    background-image: url("../../static/img/home/contectlesstitle.svg");
+height: 100%;
+width: 100%;
+background-size: contain;
+background-repeat: no-repeat;
+}
+
+
+.container-img{
+height: 100%;
+width: 50%;
+}
+
+#contectless-bg{
+    background-image: url("../../static/img/home/Bg-Section.svg");
+    background-position-y: bottom;
+    height: 50%;
+}
+
+#whychooseus-bg{
+    background-image: url("../../static/img/home/Bg-Section.svg");
+    background-position-y: bottom;
+    height: 50%;
+   
+  
+}
+
+/* small screen */
+@media (min-width: 576px) {
+
+
+ }
+
+ @media (min-width: 768px) {
+
+    .contectless-text-part{
+        justify-content: center;
+        align-items: center;
+    }
+  }

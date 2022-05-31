@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="493" height="694" viewBox="0 0 493 694">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffcb0c;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #2b2b2b;
+        font-family: SegoeUI-Bold, Segoe UI;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        font-size: 22px;
+      }
+
+      .cls-4 {
+        font-size: 28px;
+      }
+
+      .cls-5 {
+        filter: url(#Rectangle_735);
+      }
+
+      .cls-6 {
+        filter: url(#Rectangle_733);
+      }
+    </style>
+    <filter id="Rectangle_733" x="0" y="0" width="493" height="674" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="20" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feFlood flood-color="#4b4b4b" flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_735" x="27" y="449" width="439" height="245" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="20" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="24" result="blur-2"/>
+      <feFlood flood-color="#4b4b4b" flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_129" data-name="Group 129" transform="translate(-1232 -2198)">
+    <g id="Group_2018" data-name="Group 2018" transform="translate(340 -986)">
+      <g class="cls-6" transform="matrix(1, 0, 0, 1, 892, 3184)">
+        <path id="Rectangle_733-2" data-name="Rectangle 733" class="cls-1" d="M0,48.89,349,0V481.11L0,530Z" transform="translate(62 52)"/>
+      </g>
+      <g class="cls-5" transform="matrix(1, 0, 0, 1, 892, 3184)">
+        <rect id="Rectangle_735-2" data-name="Rectangle 735" class="cls-2" width="295" height="101" rx="16" transform="translate(89 501)"/>
+      </g>
+      <text id="Luis_Berto" data-name="Luis Berto" class="cls-3" transform="translate(1032 3744)"><tspan x="0" y="0">100% Satisfaction</tspan></text>
+    </g>
+    <text id="End_to_end_solution_guaranteeing_customer_satisfaction_by_utilising_a_simple_safe_and_streamlined_approach." data-name="End to end solution guaranteeing customer satisfaction by utilising a simple, safe and streamlined approach." class="cls-4" transform="translate(1343 2329)"><tspan x="0" y="30">End to end solution </tspan><tspan x="0" y="70">guaranteeing </tspan><tspan x="0" y="110">customer </tspan><tspan x="0" y="150">satisfaction by </tspan><tspan x="0" y="190">utilising a simple, </tspan><tspan x="0" y="230">safe and </tspan><tspan x="0" y="270">streamlined </tspan><tspan x="0" y="310">approach.</tspan></text>
+  </g>
+</svg>

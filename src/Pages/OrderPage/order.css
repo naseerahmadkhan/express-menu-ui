@@ -1,0 +1,14 @@
+.lead-2 {
+    font-size: 1.50rem;
+    font-weight: 600;
+  }
+
+  .card-2{
+      border:none !important;
+      padding:5%;
+  }
+
+  .btn-add-to-cart{
+    position: relative;
+    bottom: 40px;
+  }

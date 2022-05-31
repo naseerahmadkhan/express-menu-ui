@@ -1,0 +1,27 @@
+npm i axios
+npm i react-bootstrap
+npm i bootstrap
+npm i react-pro-sidebar
+npm i react-router-dom
+npm i react-bootstrap-icons
+npm i amazon-cognito-identity-js
+
+copy .env file
+
+npm i react-toastify
+npm i autoprefixer ****
+yarn add material-ui-color ****
+
+blank app.css
+
+rm -rf node_modules yarn.lock package-lock.json
+npm i
+
+
+yarn add react-switch
+yarn add  react-bootstrap-time-picker
+yarn add date-and-time
+yarn add qrcode.react
+yarn add react-to-print
+yarn add react-stepper-horizontal
+yarn add  jwt-check-expiration

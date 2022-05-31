@@ -1,0 +1,18 @@
+.bg-style-time-picker {
+    align-items: flex-start;
+    background-color: var(--supernova);
+    border-radius: 16px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+    padding: 19px 29.5px;
+    position: relative;
+    width: -webkit-fill-available;
+    margin-right: 3%;
+}
+
+.bg-style-time-picker:focus{
+    outline: none;
+    background-color: var(--supernova);
+}
+

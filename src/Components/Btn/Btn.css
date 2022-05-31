@@ -1,0 +1,81 @@
+.btn-warning{
+    background-color: var(--supernova) !important;
+    
+}
+
+.express-btn{
+  border-radius: 16px;
+  cursor: pointer;
+  margin-top: 5vh;
+  height: 78px;
+  font-weight: 600;
+}
+
+button.express-btn:hover{
+  background-color:var(--bright-sun) !important;
+
+}
+
+.dish-btn{
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 2% 5% 2% 5%;
+  color: black;
+  position: relative;
+  cursor: pointer;
+  font-size: x-large;
+}
+
+.dish-btn:hover{
+  color: black;
+  font-weight: bold;
+}
+
+
+.white-btn{
+  border-radius: 16px;
+  cursor: pointer;
+  background-color:var(--white);
+  color: black;
+  border:none;
+  height: 4em;
+  width: 100%;
+  font-weight: bolder;
+}
+
+.white-btn:hover{
+font-weight: bolder;  
+background-color: var(--bright-sun) !important;
+color: black;
+
+}
+
+
+
+.white-btn:focus, .white-btn:active:focus{
+  background-color:var(--white) !important;
+  color: black;
+  font-weight: bolder;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none;
+}
+
+
+
+.add-btn{
+  background-color:var(--white) !important;
+ border-radius:16px;
+border: none;
+}
+
+.add-btn:hover{
+  font-weight: bold;
+  background-color: var(--bright-sun) !important;
+}
+
+.add-btn:focus, .add-btn:active:focus{
+  border: none !important;
+  outline: none !important;
+  box-shadow: none;
+}

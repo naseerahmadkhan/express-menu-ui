@@ -1,0 +1,11 @@
+.react-switch-handle{
+    border-radius: 50%;
+    position: absolute;
+    transform: translateX(30.5px);
+    top: 1.5px;
+
+}
+
+.react-switch-bg{
+    border: 2px solid;
+}

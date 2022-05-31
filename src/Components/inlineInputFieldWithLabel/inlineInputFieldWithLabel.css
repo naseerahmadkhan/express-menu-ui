@@ -1,0 +1,50 @@
+.input-field{
+    border: none;
+    letter-spacing: 0;
+    line-height: 22px;
+    width: 100%;
+    
+}
+
+.input-field::placeholder {
+  border: none;
+  color: #70707099;
+  font-size: smaller;
+}
+
+.bg-style {
+    align-items: flex-start;
+    background-color: var(--supernova);
+    border-radius: 16px;
+    display: flex;
+    height: 80px;
+    justify-content: flex-end;
+    margin-top: 12px;
+    padding: 19px 29.5px;
+    position: relative;
+    width: -webkit-fill-available;
+    margin-right: 3%;
+  }
+
+  .bg-style-2 {
+    align-items: flex-start;
+    background-color: var(--buttery-white);
+    border-radius: 16px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+    padding: 19px 29.5px;
+    position: relative;
+    width: -webkit-fill-available;
+    margin-right: 3%;
+}
+
+  input:focus {
+    outline: none;
+  }
+
+  .muli-regular-dove-gray-22px {
+    color: var(--dove-gray);
+    font-size: var(--font-size-s);
+    font-style: normal;
+  }

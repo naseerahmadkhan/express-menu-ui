@@ -1,0 +1,21 @@
+.dish-card{
+    border-radius: 16px;
+    background-color: var(--supernova);
+    min-height: 27vh;
+}
+
+.dish-title{
+    font-family: 'Muli-Regular';
+    color: black;
+    font-weight: bold;
+}
+
+
+.card-text{
+    font-size: x-large;
+
+}
+
+.img-thumbnail{
+    min-height: 100%;
+}

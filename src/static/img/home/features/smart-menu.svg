@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="493" height="694" viewBox="0 0 493 694">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ffcb0c;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-4 {
+        fill: #2b2b2b;
+        font-family: SegoeUI-Bold, Segoe UI;
+        font-weight: 700;
+      }
+
+      .cls-3 {
+        font-size: 22px;
+      }
+
+      .cls-4 {
+        font-size: 28px;
+      }
+
+      .cls-5 {
+        filter: url(#Rectangle_600);
+      }
+
+      .cls-6 {
+        filter: url(#Rectangle_728);
+      }
+    </style>
+    <filter id="Rectangle_728" x="0" y="0" width="493" height="674" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="20" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feFlood flood-color="#4b4b4b" flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+    <filter id="Rectangle_600" x="27" y="449" width="439" height="245" filterUnits="userSpaceOnUse">
+      <feOffset dx="10" dy="20" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="24" result="blur-2"/>
+      <feFlood flood-color="#4b4b4b" flood-opacity="0.051"/>
+      <feComposite operator="in" in2="blur-2"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="Group_127" data-name="Group 127" transform="translate(-414 -2198)">
+    <g id="Group_2017" data-name="Group 2017" transform="translate(340 -986)">
+      <g class="cls-6" transform="matrix(1, 0, 0, 1, 74, 3184)">
+        <path id="Rectangle_728-2" data-name="Rectangle 728" class="cls-1" d="M0,48.89,349,0V481.11L0,530Z" transform="translate(62 52)"/>
+      </g>
+      <g class="cls-5" transform="matrix(1, 0, 0, 1, 74, 3184)">
+        <rect id="Rectangle_600-2" data-name="Rectangle 600" class="cls-2" width="295" height="101" rx="16" transform="translate(89 501)"/>
+      </g>
+      <text id="Tuan_Tortoa" data-name="Tuan Tortoa" class="cls-3" transform="translate(246 3744)"><tspan x="0" y="0">Smart Menu</tspan></text>
+    </g>
+    <text id="Improve_user_experience_through_a_highly_innovative_and_interactive_smart_menu_function." data-name="Improve user experience through a highly innovative and interactive smart menu function." class="cls-4" transform="translate(515 2329)"><tspan x="0" y="30">Improve user </tspan><tspan x="0" y="70">experience through </tspan><tspan x="0" y="110">a highly innovative </tspan><tspan x="0" y="150">and interactive </tspan><tspan x="0" y="190">smart menu </tspan><tspan x="0" y="230">function.</tspan></text>
+  </g>
+</svg>

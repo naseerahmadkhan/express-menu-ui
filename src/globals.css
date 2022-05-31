@@ -1,0 +1,127 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+@font-face {
+  font-family: "Muli-Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: url("./static/fonts/Muli-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Muli-ExtraBoldItalic";
+  font-style: italic;
+  font-weight: 800;
+  src: url("./static/fonts/muli-extrabold-italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Muli-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./static/fonts/Muli.ttf") format("truetype");
+}
+
+body{
+  font-family: 'Muli-Regular';
+  
+}
+
+.h1-1{
+  background-color: transparent;
+color: var(--heavy-metal);
+font-family: var(--font-family-muli-bold);
+font-size: 64px;
+font-style: normal;
+font-weight: 700;
+letter-spacing: 0.00px;
+text-align: left;
+}
+
+.text-warning{
+  color:var(--supernova) !important;
+}
+
+.bg-warning{
+  background-color: var(--supernova) !important;
+}
+
+a{
+  text-decoration: var(--supernova);
+  font-weight: var(--font-family-muli-bold);
+}
+.mt-6 {
+  margin-top: 10rem!important;
+}
+
+.mt-n6{
+  margin-top: -2rem!important;
+}
+
+.h5{
+  color: var(--dove-gray);
+}
+
+.bg-nova{
+  background-color: var(--supernova);
+  border-radius: 16px;
+}
+
+.bg-nova-2{
+  background-color: var(--supernova);
+}
+
+.bg-buttery-white{
+  background-color: var(--buttery-white);
+  padding: 2em;
+}
+.bg-success-2{
+  background-color: #00CD70;
+  border:none;
+}
+
+.bg-success-2:hover{
+  background-color: #07472a;
+  border-color:  #07472a;
+}
+
+
+
+.tag{
+  font-family: "Muli-Regular";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 26px;
+font-style: normal;
+line-height: 35px;
+}
+.container{
+  max-width: 86vw !important;
+}
+
+.dove-gray-text{
+  color: var(--dove-gray-2);
+  font-family: var(--font-family-muli-bold);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 700;
+  line-height: 60px;
+
+}
+
+label{
+font-family: var(--font-family-muli-bold) !important;
+font-size: 24px !important;
+font-style: normal !important;
+font-weight: 700 !important;
+}
+
+button{
+  background: none;
+border: none;
+}
+
+.bb-4, .bb-4:focus {
+  border-bottom: 4px solid gray;
+}
+
+.display-7 {
+  font-size: 2.0rem;
+}

@@ -1,0 +1,13 @@
+        .bg-style-main {
+            align-items: flex-start;
+            background-color: var(--buttery-white);
+            border-radius: 16px;
+            display: flex;
+            height: 80px;
+            justify-content: flex-end;
+            margin-top: 12px;
+            padding: 19px 29.5px;
+            position: relative;
+            width: -webkit-fill-available;
+            margin-right: 3%;
+        }

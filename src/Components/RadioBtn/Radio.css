@@ -1,0 +1,15 @@
+input[type="radio"]:checked ~ label {
+    color: black;
+  }
+
+  .form-check-input{
+    font-size: 36px;
+    border: 7px solid #FFCB0C;
+  }
+
+  .form-check-input:checked {
+    background-color: #00CD70;
+    border-color: #00CD70;
+  }
+
+ 

@@ -1,0 +1,6 @@
+.nova-card{
+    border-radius: 10px;
+    background-color: var(--bright-sun);
+    height: 48px;
+    align-items: center;
+}

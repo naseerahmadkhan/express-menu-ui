@@ -1,0 +1,11 @@
+.no-border{
+    border:none;
+    background-color: var(--buttery-white);
+    width: 100%;
+}
+
+.no-border:focus{
+    border:none;
+    background-color: var(--buttery-white);
+    outline: none;
+}
