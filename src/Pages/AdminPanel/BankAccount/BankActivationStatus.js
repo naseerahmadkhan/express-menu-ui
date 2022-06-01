@@ -68,15 +68,14 @@ const BankActivationStatus = () => {
         axios
       .post(api, data, config)
       .then((response) => {
-        console.log("res>>>",response.data)
-        storeData["restaurantInfo"] = response.data;
-        // return response.data
+        if(response.data === "empty"){
+          console.log("not restaurant data found")
+        }else{
+            storeData["restaurantInfo"] = response.data
+            getConnectedAccountStatus()
+        }
       })
-      .then((response)=>{
-      //  console.log("again",response)
-       getConnectedAccountStatus()
-      //  console.log(">>>",storeData.restaurantInfo)
-      })
+      
       .catch((error) => {
         console.error("Invalid Token", error);
         // notify("Token is expired! Please Re-login");
