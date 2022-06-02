@@ -40,6 +40,13 @@ const RequireAuth = ({ children, redirectTo }) => {
           }
           
         })
+        .catch((e)=>{
+          console.log("e",e)
+          if(e ===undefined){
+            console.log("found err")
+            setIsAuth(false)
+          }
+        });
 
         return () => {
        };

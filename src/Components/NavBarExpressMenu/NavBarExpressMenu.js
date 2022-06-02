@@ -28,6 +28,7 @@ const NavBarExpressMenu = () => {
               <Nav.Link href="/order">Order</Nav.Link>
               <Nav.Link href="/contact-us">Contact us</Nav.Link>
               <Nav.Link href="/login">Login or Signup</Nav.Link>
+              <Nav.Link href="/cart">Cart</Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
