@@ -9,19 +9,7 @@ import TextArea from "../../../Components/TextArea/TextArea";
 
 const CreateCategory = (props) => {
 
-  const [categoryName,setCatName] =useState("");
-  const [categoryDesc,setCatDesc] =useState("");
-
-  const handleClick = () =>{
-    const catObj={
-      categoryName,categoryDesc
-    }
-    props.setNewCatForm(catObj)
-    // props.showDishes()
-    // console.log("create category",categoryName,categoryDesc)
-    props.submit(catObj)
-    
-  }
+  
     return (
         <div>
         <Container className="mt-5 ">
@@ -35,7 +23,7 @@ const CreateCategory = (props) => {
                     type={"text"}
                     name={"category_name"}
                     placeholder={""}
-                    val={(v)=>setCatName(v)}
+                    val={(v)=>props.setCatName(v)}
                     req={true}
                   />
         
@@ -45,12 +33,12 @@ const CreateCategory = (props) => {
 
         <Row className="mt-5">
                   <LabelForm text={"Category Description"} />
-                  <TextArea className={"bg-style2 muli-regular-dove-gray-22px"} name={"category-desc"} val={(v)=>setCatDesc(v)}/>
+                  <TextArea className={"bg-style2 muli-regular-dove-gray-22px"} name={"category-desc"} val={(v)=>props.setCatDesc(v)}/>
                 </Row>
 
                 <Row className="mt-1 d-flex justify-content-between" >
             <Col md={4}><Btn className={"express-btn"} name="Cancel" customEvent={props.hideCat} variant={"warning"} /></Col>
-            <Col md={4}><Btn className={"express-btn"} name="Save" customEvent={handleClick} variant={"warning"} /></Col>
+            <Col md={4}><Btn className={"express-btn"} name="Save" customEvent={props.submit} variant={"warning"} /></Col>
             </Row>
         </Container>
         </div>

@@ -23,27 +23,26 @@ const CreateNewMenuForm = (props) => {
   const [startTime,setStartTime] = useState(3600)
   const [endTime,setEndTime] = useState(3600)
   const [isActive,setIsActive] = useState( false)
-  const [catformValues,setCatFormValues] = useState({"categoryName":"","categoryDesc":"",isAllDayMenu,isActive:true,sortOrder:0,dishes:[]});
+  const [catName,setCatName] = useState("")
+  const [catDesc,setCatDesc] = useState("")
+  const [catformValues,setCatFormValues] = useState({"categoryName":catName,"categoryDesc":catDesc,isAllDayMenu,isActive:true,sortOrder:0,dishes:[]});
   const [showNewCategory, setNewShowCategory] = useState(props.showCategory||false );
 
 
 
-  const handleCreate =(cat)=>{
-    // new Date(Date.now())
+  const handleCreate =()=>{
     const now = new Date();
 let currentDate = date.format(now, 'DD/MMM/YYYY HH:mm:ss');
 
-    let foodMenuArr = storeData.foodMenu
-    let FoodMenuList = foodMenuArr?(foodMenuArr):([])
+    let FoodMenuList = storeData.foodMenu?(storeData.foodMenu):([])
       const menuObj = {
         menuName,menuDesc,isAllDayMenu,startTime,endTime,isActive,lastEditedOn:currentDate,lastEditedBy:"Admin",sortOrder:FoodMenuList.length
       }
-      let formObj 
-      
-      cat?(formObj = {...menuObj,categories:[{...cat}]}):(formObj = {...menuObj,categories:[catformValues]})
+      let formObj = {...menuObj,categories:[{...catformValues,"categoryName":catName,"categoryDesc":catDesc}]}
       
       FoodMenuList.push(formObj)
       props.submit(FoodMenuList);
+
   }
 
  
@@ -142,7 +141,7 @@ let currentDate = date.format(now, 'DD/MMM/YYYY HH:mm:ss');
               )}
               {showNewCategory ? 
               <Row className="mt-n6">
-              <CreateCategory setNewCatForm={setCatFormValues} submit={handleCreate} hideCat={()=>setNewShowCategory(false)} />
+              <CreateCategory  setCatName={(v)=>setCatName(v)}  setCatDesc={(v)=>setCatDesc(v)} submit={handleCreate} hideCat={()=>setNewShowCategory(false)} />
               </Row>
               : false}
             </Row>
