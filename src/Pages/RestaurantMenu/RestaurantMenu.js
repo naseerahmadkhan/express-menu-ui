@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useState,useEffect} from 'react'
 import axios from "axios"
 import {
     Row,
@@ -13,29 +13,54 @@ import {
   import DishImg from "../../static/img/order/04.png";
 
 const RestaurantMenu = (props) => {
+
+    const [foodMenu,setFoodMenu] = useState([])
+    const [menuList,setMenuList] = useState([])
+    const [catList,setCatList] = useState([])
+
     const urlPath = window.location.pathname
-    console.log("props...",urlPath)
+    // console.log("props...",urlPath)
     const restIdFromUrl = urlPath.substring(urlPath.lastIndexOf('/restaurant-id/') + 15);
-    console.log("id...",restIdFromUrl)
+    // console.log("id...",restIdFromUrl)
 
 
-    const api = `http://localhost:8000/get-restaurant-menu2/${restIdFromUrl}`
+  const getRestaurantID = () =>{
+    const api = `${process.env.REACT_APP_GET_RESTAURANT_MENU_API}${restIdFromUrl}`
    
 
-    axios
-      .get(api)
-      .then((response) => {
-        console.log("sucess:::", response.data);
-      })
-      .catch((error) => {
-        console.error("Invalid", error);
-      });
+      axios
+        .get(api)
+        .then((response) => {
+          
+          return response.data.data.foodMenu
+          
+        })
+        .then((data)=>{
+          setFoodMenu(data)
+          data.map((item,index)=>{
+            setMenuList((prev)=>[...prev,item.menuName])
+              console.log("menuList",menuList)
 
+              item.categories.map((itm,ind)=>{
+                console.log("itm",itm)
+                let catObj = {mid:index,cid:ind, catName:itm.categoryName}
+                setCatList((prev)=>[...prev,catObj])
+
+              })
+              
+          })
+        })
+        .catch((error) => {
+          console.error("Invalid", error);
+        });
+  }
+
+    useEffect(()=>{
+      getRestaurantID()
+        
   
-
-    // useEffect(()=>{
-       
-    // },[])
+         
+    },[1])
   return (
     <Container fluid className="mt-6">
       <Row className="bg-light-card pb-5 pt-5">
@@ -47,7 +72,7 @@ const RestaurantMenu = (props) => {
           <h1 className="display-2 ">Smile Thai Cuisine (Resturant Name)</h1>
           <div className="d-flex  justify-content-center align-items-center mb-5 ">
             <Col>
-              <p className="lead-2 mt-5">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+              <p className="lead-2 mt-5">Lorem ipsum Lorem ipsum Lorem ipsum{JSON.stringify(catList)}</p>
             </Col>
           </div>
         </Col>

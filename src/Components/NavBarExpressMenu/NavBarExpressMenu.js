@@ -23,8 +23,8 @@ const NavBarExpressMenu = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav activeKey={window.location.pathname} className="" >
-              <Nav.Link  href="/">Home</Nav.Link>
-              <Nav.Link  href="/partner-with-us">Partner with us</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/partner-with-us">Partner with us</Nav.Link>
               <Nav.Link href="/order">Order</Nav.Link>
               <Nav.Link href="/contact-us">Contact us</Nav.Link>
               <Nav.Link href="/login">Login or Signup</Nav.Link>
