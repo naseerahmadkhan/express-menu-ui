@@ -13,6 +13,7 @@ import {
   import DishImg from "../../static/img/order/04.png";
   import RadioBtn from "../../Components/RadioBtn/RadioBtn"
   import { Check, Check2, XLg} from "react-bootstrap-icons";
+  import { useCart } from "react-use-cart";
 
 const RestaurantMenu = (props) => {
 
@@ -24,7 +25,18 @@ const RestaurantMenu = (props) => {
     const [restaurantName,setRestaurantName]= useState("")
 
     const [showDishesList,setShowDishesList] = useState(true)
-    const [viewDish,setViewDish] = useState({})
+    const [viewDish,setViewDish] = useState([{}])
+
+    // const products = [
+    //   {
+    //     id: 1,
+    //     name: "Malm",
+    //     price: 9900,
+    //     quantity: 1
+    //   }
+    // ];
+    const { addItem } = useCart();
+    
 
     const urlPath = window.location.pathname
     // console.log("props...",urlPath)
@@ -68,7 +80,6 @@ const RestaurantMenu = (props) => {
 
     useEffect(()=>{
       getRestaurantID()
-        
          
     },[])
 
@@ -81,13 +92,19 @@ const RestaurantMenu = (props) => {
       )
     })
 
+   const handleAddToCart = () =>{
+    setShowDishesList(true)
+
+   } 
+
     const openAddToCart = (index) =>{
       setSelectedMenu({ ...selectedMenu,dish:index})
       setShowDishesList(false)
       console.log(">>>",selectedMenu)
       let mid = selectedMenu.mid
       let cid = selectedMenu.cid
-      setViewDish(foodMenu[mid].categories[cid].dishes[index])
+      setViewDish([foodMenu[mid].categories[cid].dishes[index]])
+      console.log("view dish>>>>",viewDish)
     }
 
     const showDishesAccordingtoCategory = (id) =>{
@@ -139,8 +156,8 @@ const RestaurantMenu = (props) => {
 
     var servingSizelist
     
-    if(viewDish.servingSizefieldsList && viewDish.servingSizefieldsList.length > 0){
-      servingSizelist = viewDish.servingSizefieldsList.map((item,ind)=>{
+    if(viewDish[0].servingSizefieldsList && viewDish[0].servingSizefieldsList.length > 0){
+      servingSizelist = viewDish[0].servingSizefieldsList.map((item,ind)=>{
         return <div key={ind}><RadioBtn label={item.size + " @ $ " +item.price} val={item.price} name={"size"}/></div>
       })
 
@@ -149,21 +166,20 @@ const RestaurantMenu = (props) => {
 
     const addToCart = <Container fluid>
     <Row>
-    {JSON.stringify(viewDish)}
       <Col md={6} lg={6} sm={12}>
         <Container className="mt-5">
           <Row className="g-0">
             <Col md={{offset:7,span:12}} xs={12} >
              <Card className="shadow-lg p-3 mb-5 bg-white rounded border border-secondary">
              <div>
-                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish.dishName}</h3>
+                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish[0].dishName}</h3>
              </div>
 
              <div>
-                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish.dishDesc}</h3>
+                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish[[0]].dishDesc}</h3>
              </div>
 
-             <Image className="w-100 h-100" src={viewDish.imgUrl} />
+             <Image className="w-100 h-100" src={viewDish[0].imgUrl} />
              <div>
                 <Table>
                     <thead >
@@ -174,7 +190,7 @@ const RestaurantMenu = (props) => {
                     </thead>
                     <tbody className="border-top-0">
                         <tr className="h4 d-flex justify-content-around">
-                            <td>{viewDish.stdDishPrice}</td>
+                            <td>{viewDish[0].stdDishPrice}</td>
                         </tr>
                     </tbody>
                 </Table>
@@ -183,9 +199,9 @@ const RestaurantMenu = (props) => {
              <Container>
                  <Row>
                      <Col md={12}>
-                     <p className="lead">Gluten free {viewDish.isGlutenFree?(<Check size={48}/>):(<XLg size={24}/>)}</p>
-                     <p className="lead">Vegetarian {viewDish.isVegetarian?(<Check size={48}/>):(<XLg size={24}/>)}</p>
-                     <p className="lead">Vegan {viewDish.isVegan?(<Check size={48}/>):(<XLg size={24}/>)}</p>
+                     <p className="lead">Gluten free {viewDish[0].isGlutenFree?(<Check size={48}/>):(<XLg size={24}/>)}</p>
+                     <p className="lead">Vegetarian {viewDish[0].isVegetarian?(<Check size={48}/>):(<XLg size={24}/>)}</p>
+                     <p className="lead">Vegan {viewDish[0].isVegan?(<Check size={48}/>):(<XLg size={24}/>)}</p>
                      {
                       servingSizelist
                      }
@@ -198,7 +214,7 @@ const RestaurantMenu = (props) => {
              <Container className="mt-3">
                  <Row>
                  <Col className="text-center">
-                    <button className="btn-success " onClick={()=>setShowDishesList(true)}><span className="h3">Add to Order</span></button>
+                    <button className="btn-success p-3" onClick={()=>handleAddToCart()}><span className="h3">Add to Cart</span></button>
                   </Col>
                  </Row>
              </Container>
@@ -259,6 +275,8 @@ const RestaurantMenu = (props) => {
           </Row>
           </Container>
         {!showDishesList?( addToCart):(false)}
+
+       
 
       </Container>
   )

@@ -25,3 +25,4 @@ yarn add qrcode.react
 yarn add react-to-print
 yarn add react-stepper-horizontal
 yarn add  jwt-check-expiration
+npm i react-use-cart

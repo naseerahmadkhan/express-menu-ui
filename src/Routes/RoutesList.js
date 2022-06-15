@@ -7,6 +7,7 @@ import RegPage from "../Pages/RegPage/RegPage"
 import SignupCompleted from "../Pages/SignupCompletedPage/SingnupCompletedPage"
 import Orders from "../Pages/OrderPage/Orders"
 import RestaurantMenu from '../Pages/RestaurantMenu/RestaurantMenu'
+import CartPage from '../Pages/Cart/CartPage'
 
 import Dashboard from "../Pages/AdminPanel/Dashboard/Dashboard"
 import CreateNewMenu from "../Pages/AdminPanel/CreateMenuPage/CreateNewMenuPage"
@@ -59,6 +60,7 @@ const RoutesList = () => {
     <Route path='/partner-with-us' element={<div><ExpressNavbar/><RegPage/><Footer/></div>} />
     <Route path='/singnup-completed' element={<div><ExpressNavbar/><SignupCompleted/><Footer/></div>} />
     <Route path='/restaurant-id/:id' element={<div><ExpressNavbar/><RestaurantMenu/><Footer/></div>} />
+    <Route path='/cart' element={<div><ExpressNavbar/><CartPage/><Footer/></div>} />
 
     
     
