@@ -1,22 +1,30 @@
 import React,{useState,useEffect} from 'react'
 import axios from "axios"
 import {
-    Row,
-    Col,
-    Container,
-    CardGroup,
-    Card,
-    ListGroup,
+  Row,
+  Col,
+  Container,
+  Card,
+  Table,
+  Form
   } from "react-bootstrap";
   import Image from "react-bootstrap/Image";
   import RestImg from "../../static/img/order/03.png";
   import DishImg from "../../static/img/order/04.png";
+  import RadioBtn from "../../Components/RadioBtn/RadioBtn"
+  import { Check, Check2, XLg} from "react-bootstrap-icons";
 
 const RestaurantMenu = (props) => {
 
     const [foodMenu,setFoodMenu] = useState([])
     const [menuList,setMenuList] = useState([])
     const [catList,setCatList] = useState([])
+    const [selectedDishes,setSelectedDishes]=useState([])
+    const [selectedMenu,setSelectedMenu]=useState({})
+    const [restaurantName,setRestaurantName]= useState("")
+
+    const [showDishesList,setShowDishesList] = useState(true)
+    const [viewDish,setViewDish] = useState({})
 
     const urlPath = window.location.pathname
     // console.log("props...",urlPath)
@@ -31,6 +39,9 @@ const RestaurantMenu = (props) => {
       axios
         .get(api)
         .then((response) => {
+          console.log("response>>>",response)
+          console.log("rest name",response.data.data.restaurantInfo.businessName)
+          setRestaurantName(response.data.data.restaurantInfo.businessName)
           
           return response.data.data.foodMenu
           
@@ -58,9 +69,150 @@ const RestaurantMenu = (props) => {
     useEffect(()=>{
       getRestaurantID()
         
-  
          
-    },[1])
+    },[])
+
+
+    const menuItem = menuList.map((item,index)=>{
+      return(
+        <Col key={index} className="d-flex justify-content-center" md={"auto"} sm={12}>
+        <button id={index} className="lead-2 mt-3" onClick={(e)=>console.log("menu btn",e.target.id)}>{item}</button>
+      </Col>
+      )
+    })
+
+    const openAddToCart = (index) =>{
+      setSelectedMenu({ ...selectedMenu,dish:index})
+      setShowDishesList(false)
+      console.log(">>>",selectedMenu)
+      let mid = selectedMenu.mid
+      let cid = selectedMenu.cid
+      setViewDish(foodMenu[mid].categories[cid].dishes[index])
+    }
+
+    const showDishesAccordingtoCategory = (id) =>{
+      console.log("cat btn",id)
+      let mid = catList[id].mid
+      let cid = catList[id].cid
+      setSelectedMenu({mid,cid})
+      // console.log("dishes",foodMenu[mid].categories[cid].dishes)
+      setSelectedDishes(foodMenu[mid].categories[cid].dishes)
+      console.log("dishes",selectedDishes)
+    }
+
+    const catItem = catList.map((item,index)=>{
+      return(
+        <Col key={index} className="d-flex justify-content-center" md={"auto"} sm={12}>
+        <button id={index} className="lead-2 mt-3" onClick={(e)=>showDishesAccordingtoCategory(e.target.id)}>{item.catName}</button>
+      </Col>
+      )
+    })
+
+    const dishItem = selectedDishes.map((item,index)=>{
+     return <Col md={6} lg={6} key={index}>
+            <Container className="mt-5" >
+              <Row className="g-0">
+                <Col md={6} lg={6} className="bg-buttery-white" >
+                  <Row className=" d-flex flex-column h-100">
+                    <Col className="d-flex flex-column align-items-start h-75 ">
+                      <p className="fw-bold h3 mb-2">{item.dishName}</p>
+                      <p className="lead-2">{item.dishDesc}</p>
+                    </Col>
+
+                    <Col className="d-flex align-self-end ">
+                      <p className="fw-bold h3">{item.stdDishPrice}</p>
+                    </Col>
+
+                    <Col className="text-center">
+                      <button className="btn btn-warning" onClick={()=>openAddToCart(index)}>View</button>
+                    </Col>
+                  </Row>
+                </Col>
+                <Col md={6} lg={6} className="d-flex flex-column">
+                  <Image className="w-100 h-100" src={item.imgUrl} />
+                </Col>
+              </Row>
+            </Container>
+          </Col>
+
+    })
+
+    var servingSizelist
+    
+    if(viewDish.servingSizefieldsList && viewDish.servingSizefieldsList.length > 0){
+      servingSizelist = viewDish.servingSizefieldsList.map((item,ind)=>{
+        return <div key={ind}><RadioBtn label={item.size + " @ $ " +item.price} val={item.price} name={"size"}/></div>
+      })
+
+    }
+    
+
+    const addToCart = <Container fluid>
+    <Row>
+    {JSON.stringify(viewDish)}
+      <Col md={6} lg={6} sm={12}>
+        <Container className="mt-5">
+          <Row className="g-0">
+            <Col md={{offset:7,span:12}} xs={12} >
+             <Card className="shadow-lg p-3 mb-5 bg-white rounded border border-secondary">
+             <div>
+                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish.dishName}</h3>
+             </div>
+
+             <div>
+                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish.dishDesc}</h3>
+             </div>
+
+             <Image className="w-100 h-100" src={viewDish.imgUrl} />
+             <div>
+                <Table>
+                    <thead >
+                        <tr className="h4 d-flex justify-content-around border-0">
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody className="border-top-0">
+                        <tr className="h4 d-flex justify-content-around">
+                            <td>{viewDish.stdDishPrice}</td>
+                        </tr>
+                    </tbody>
+                </Table>
+             </div>
+
+             <Container>
+                 <Row>
+                     <Col md={12}>
+                     <p className="lead">Gluten free {viewDish.isGlutenFree?(<Check size={48}/>):(<XLg size={24}/>)}</p>
+                     <p className="lead">Vegetarian {viewDish.isVegetarian?(<Check size={48}/>):(<XLg size={24}/>)}</p>
+                     <p className="lead">Vegan {viewDish.isVegan?(<Check size={48}/>):(<XLg size={24}/>)}</p>
+                     {
+                      servingSizelist
+                     }
+
+                     
+                     </Col>
+                 </Row>
+             </Container>
+
+             <Container className="mt-3">
+                 <Row>
+                 <Col className="text-center">
+                    <button className="btn-success " onClick={()=>setShowDishesList(true)}><span className="h3">Add to Order</span></button>
+                  </Col>
+                 </Row>
+             </Container>
+             </Card>
+            </Col>
+            
+          </Row>
+        </Container>
+      </Col>
+
+      
+    </Row>
+  </Container>
+
   return (
     <Container fluid className="mt-6">
       <Row className="bg-light-card pb-5 pt-5">
@@ -69,10 +221,10 @@ const RestaurantMenu = (props) => {
           sm={{ offset: 1, span: 10 }}
           className="d-flex flex-column  justify-content-center align-items-left"
         >
-          <h1 className="display-2 ">Smile Thai Cuisine (Resturant Name)</h1>
+          <h1 className="display-2 ">{restaurantName}</h1>
           <div className="d-flex  justify-content-center align-items-center mb-5 ">
             <Col>
-              <p className="lead-2 mt-5">Lorem ipsum Lorem ipsum Lorem ipsum{JSON.stringify(catList)}</p>
+              <p className="lead-2 mt-5">Lorem ipsum Lorem ipsum Lorem ipsum</p>
             </Col>
           </div>
         </Col>
@@ -89,24 +241,9 @@ const RestaurantMenu = (props) => {
           <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
             <p className="lead-2 mt-3">Picked for you</p>
           </Col>
-          <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
-            <p className="lead-2 mt-3">Entree</p>
-          </Col>
-          <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
-            <p className="lead-2 mt-3">Salad</p>
-          </Col>
-          <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
-            <p className="lead-2 mt-3">Fried Rice</p>
-          </Col>
-          <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
-            <p className="lead-2 mt-3">Curry</p>
-          </Col>
-          <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
-            <p className="lead-2 mt-3">Noodles</p>
-          </Col>
-          <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
-            <p className="lead-2 mt-3">Stir Fry</p>
-          </Col>
+          {menuItem}
+          {catItem}
+
         </Row>
       </Container>
 
@@ -114,38 +251,14 @@ const RestaurantMenu = (props) => {
       <Container>
         <Row>
         {/* Loop dish here */}
-          <Col md={6} lg={6}>
-            <Container className="mt-5">
-              <Row className="g-0">
-                <Col md={6} lg={6} className="bg-buttery-white" >
-                  <Row className=" d-flex flex-column h-100">
-                    <Col className="d-flex flex-column align-items-start h-75 ">
-                      <p className="fw-bold h3 mb-2">Green Curry</p>
-                      <p className="lead-2">a quick brown fox mjmps over</p>
-                    </Col>
-
-                    <Col className="d-flex align-self-end ">
-                      <p className="fw-bold h3">$25</p>
-                    </Col>
-
-                    <Col className="text-center">
-                      <button className="btn btn-warning" onClick={()=>props.clickHandle(true)}>add to cart</button>
-                    </Col>
-                  </Row>
-                </Col>
-                <Col md={6} lg={6} className="d-flex flex-column">
-                  <Image className="w-100 h-100" src={DishImg} />
-                </Col>
-              </Row>
-            </Container>
-          </Col>
+          {showDishesList?(dishItem):(false)}
         {/* End dish loop here */}
           
 
           
           </Row>
           </Container>
-
+        {!showDishesList?( addToCart):(false)}
 
       </Container>
   )

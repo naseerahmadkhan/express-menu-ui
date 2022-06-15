@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { Row, Col, Container } from "react-bootstrap";
 import Btn from '../../../Components/Btn/Btn';
 const CreateRestaurant = (props) => {
+    const [restName,setRestName]=useState("")
     const [email,setEmail]=useState("")
     const [address,setAddress]=useState("")
     const [phone,setPhone]=useState("")
@@ -9,6 +10,7 @@ const CreateRestaurant = (props) => {
 
     const handleSubmit = () =>{
         const infObj={
+            restaurantName:restName,
             businessEmail:email,
             restaurantAddress:address,
             restaurantPhoneNo:phone
@@ -26,6 +28,14 @@ const CreateRestaurant = (props) => {
                 <h1 className="display-7 mt-5 mb-5">Create Restaurant</h1>
             </Col>
         </Row>
+
+        <Row className="mb-5">
+            <Col xs={{span:12}} md={{span:6}}>
+                <label>Restaurant Name</label>
+                <input type="email" className="input-field bg-style-admin muli-regular-dove-gray-22px" value={restName} onChange={e=>setRestName(e.target.value)}/>
+            </Col>
+        </Row>
+
         <Row className="mb-5">
             <Col xs={{span:12}} md={{span:6}}>
                 <label>Business Email</label>
