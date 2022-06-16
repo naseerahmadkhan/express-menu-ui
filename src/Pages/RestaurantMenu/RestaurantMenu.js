@@ -14,6 +14,7 @@ import {
   import RadioBtn from "../../Components/RadioBtn/RadioBtn"
   import { Check, Check2, XLg} from "react-bootstrap-icons";
   import { useCart } from "react-use-cart";
+  import { v4 as uuidv4 } from "uuid";
 
 const RestaurantMenu = (props) => {
 
@@ -26,6 +27,9 @@ const RestaurantMenu = (props) => {
 
     const [showDishesList,setShowDishesList] = useState(true)
     const [viewDish,setViewDish] = useState([{}])
+
+    const [price,setPrice]=useState(0);
+
 
     // const products = [
     //   {
@@ -81,7 +85,7 @@ const RestaurantMenu = (props) => {
     useEffect(()=>{
       getRestaurantID()
          
-    },[])
+    },[price])
 
 
     const menuItem = menuList.map((item,index)=>{
@@ -92,8 +96,18 @@ const RestaurantMenu = (props) => {
       )
     })
 
-   const handleAddToCart = () =>{
-    setShowDishesList(true)
+   const handleAddToCart = (dish) =>{
+    // setShowDishesList(true)
+
+    const finalProduct = {
+      id:uuidv4(),
+      dishName:dish[0].dishName,
+      price
+      
+    }
+    
+    console.log("final products",finalProduct)
+    addItem(finalProduct,1) //1 is qty
 
    } 
 
@@ -103,8 +117,15 @@ const RestaurantMenu = (props) => {
       console.log(">>>",selectedMenu)
       let mid = selectedMenu.mid
       let cid = selectedMenu.cid
+      let currentDish =foodMenu[mid].categories[cid].dishes[index] 
+
       setViewDish([foodMenu[mid].categories[cid].dishes[index]])
-      console.log("view dish>>>>",viewDish)
+      
+
+      if((currentDish.stdDishPrice) !== undefined){
+        setPrice(currentDish.stdDishPrice)
+      }
+      
     }
 
     const showDishesAccordingtoCategory = (id) =>{
@@ -158,7 +179,15 @@ const RestaurantMenu = (props) => {
     
     if(viewDish[0].servingSizefieldsList && viewDish[0].servingSizefieldsList.length > 0){
       servingSizelist = viewDish[0].servingSizefieldsList.map((item,ind)=>{
-        return <div key={ind}><RadioBtn label={item.size + " @ $ " +item.price} val={item.price} name={"size"}/></div>
+
+        return <div key={ind} className="px-5">
+
+        <Form.Check type="radio" id={`servingsize ${ind}`} >
+        <Form.Check.Input type="radio" name="servingsize" value={item.price}  onChange={e=>setPrice(item.price)} />
+        <Form.Check.Label className="p-3">{`${item.size} @ $ ${item.price}`}</Form.Check.Label>
+      </Form.Check>
+
+        </div>
       })
 
     }
@@ -176,7 +205,7 @@ const RestaurantMenu = (props) => {
              </div>
 
              <div>
-                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish[[0]].dishDesc}</h3>
+                 <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish[0].dishDesc}</h3>
              </div>
 
              <Image className="w-100 h-100" src={viewDish[0].imgUrl} />
@@ -190,7 +219,7 @@ const RestaurantMenu = (props) => {
                     </thead>
                     <tbody className="border-top-0">
                         <tr className="h4 d-flex justify-content-around">
-                            <td>{viewDish[0].stdDishPrice}</td>
+                            <td>{viewDish[0].stdDishPrice }</td>
                         </tr>
                     </tbody>
                 </Table>
@@ -214,7 +243,7 @@ const RestaurantMenu = (props) => {
              <Container className="mt-3">
                  <Row>
                  <Col className="text-center">
-                    <button className="btn-success p-3" onClick={()=>handleAddToCart()}><span className="h3">Add to Cart</span></button>
+                    <button className="btn-success p-3" onClick={()=>handleAddToCart(viewDish,price)}><span className="h3">Add to Cart</span></button>
                   </Col>
                  </Row>
              </Container>
