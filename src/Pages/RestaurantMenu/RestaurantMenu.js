@@ -29,6 +29,8 @@ const RestaurantMenu = (props) => {
     const [viewDish,setViewDish] = useState([{}])
 
     const [price,setPrice]=useState(0);
+    const [serving,setServing]=useState({"size":"","price":""});
+
 
 
     // const products = [
@@ -85,7 +87,7 @@ const RestaurantMenu = (props) => {
     useEffect(()=>{
       getRestaurantID()
          
-    },[price])
+    },[])
 
 
     const menuItem = menuList.map((item,index)=>{
@@ -97,15 +99,15 @@ const RestaurantMenu = (props) => {
     })
 
    const handleAddToCart = (dish) =>{
-    // setShowDishesList(true)
+    setShowDishesList(true)
 
     const finalProduct = {
       id:uuidv4(),
       dishName:dish[0].dishName,
-      price
+      ...serving
       
     }
-    
+    console.log("serving",serving)
     console.log("final products",finalProduct)
     addItem(finalProduct,1) //1 is qty
 
@@ -123,7 +125,7 @@ const RestaurantMenu = (props) => {
       
 
       if((currentDish.stdDishPrice) !== undefined){
-        setPrice(currentDish.stdDishPrice)
+        setServing({size:"std",price:currentDish.stdDishPrice})
       }
       
     }
@@ -183,7 +185,7 @@ const RestaurantMenu = (props) => {
         return <div key={ind} className="px-5">
 
         <Form.Check type="radio" id={`servingsize ${ind}`} >
-        <Form.Check.Input type="radio" name="servingsize" value={item.price}  onChange={e=>setPrice(item.price)} />
+        <Form.Check.Input type="radio" name="servingsize" value={item.price}  onChange={e=>setServing({size:item.size, price:item.price})} />
         <Form.Check.Label className="p-3">{`${item.size} @ $ ${item.price}`}</Form.Check.Label>
       </Form.Check>
 
@@ -241,9 +243,16 @@ const RestaurantMenu = (props) => {
              </Container>
 
              <Container className="mt-3">
+                 <Row className="mb-5">
+                 <Col className="text-center">
+                    <button className="btn-success w-100 p-3" onClick={()=>handleAddToCart(viewDish)}><span className="h3">Add to Cart</span></button>
+                  </Col>
+
+                  
+                 </Row>
                  <Row>
                  <Col className="text-center">
-                    <button className="btn-success p-3" onClick={()=>handleAddToCart(viewDish,price)}><span className="h3">Add to Cart</span></button>
+                    <button className="btn-warning w-100 p-3" onClick={()=>setShowDishesList(true)}><span className="h3">Back</span></button>
                   </Col>
                  </Row>
              </Container>

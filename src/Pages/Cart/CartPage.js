@@ -3,7 +3,7 @@ import {useCart } from "react-use-cart";
 
 const CartPage = () => {
     const { items,emptyCart  } = useCart();
-    emptyCart();
+    // emptyCart();
   return (
     <div className='mt-6'>
         <h1 className='display-3'>Carts</h1>
