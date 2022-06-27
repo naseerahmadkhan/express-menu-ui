@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect,useContext} from 'react'
 import axios from "axios"
 import {
   Row,
@@ -15,6 +15,7 @@ import {
   import { Check, Check2, XLg} from "react-bootstrap-icons";
   import { useCart } from "react-use-cart";
   import { v4 as uuidv4 } from "uuid";
+  import { AppContext } from '../../App';
 
 const RestaurantMenu = (props) => {
 
@@ -31,7 +32,7 @@ const RestaurantMenu = (props) => {
     const [price,setPrice]=useState(0);
     const [serving,setServing]=useState({"size":"","price":""});
 
-
+    const storeData = useContext(AppContext);
 
     // const products = [
     //   {
@@ -41,13 +42,24 @@ const RestaurantMenu = (props) => {
     //     quantity: 1
     //   }
     // ];
-    const { addItem } = useCart();
+    const { addItem,setCartMetadata } = useCart();
     
 
     const urlPath = window.location.pathname
     // console.log("props...",urlPath)
     const restIdFromUrl = urlPath.substring(urlPath.lastIndexOf('/restaurant-id/') + 15);
     // console.log("id...",restIdFromUrl)
+
+
+
+    const showDishesAccordingtoMenu = (mid) =>{
+      console.log(mid)
+      setSelectedMenu({mid,cid:0})
+      // console.log("dishes",foodMenu[mid].categories[cid].dishes)
+      setSelectedDishes(foodMenu[mid].categories[0].dishes)
+      console.log("dishes",selectedDishes)
+      document.getElementById("dishes").scrollIntoView();
+    }
 
 
   const getRestaurantID = () =>{
@@ -59,7 +71,9 @@ const RestaurantMenu = (props) => {
         .then((response) => {
           console.log("response>>>",response)
           console.log("rest name",response.data.data.restaurantInfo.businessName)
+          setCartMetadata({restInfo:response.data.data.restaurantInfo,restId:restIdFromUrl});
           setRestaurantName(response.data.data.restaurantInfo.businessName)
+
           
           return response.data.data.foodMenu
           
@@ -78,7 +92,12 @@ const RestaurantMenu = (props) => {
               })
               
           })
+          console.log("loded")
+          
         })
+        .then((()=>{
+        
+        }))
         .catch((error) => {
           console.error("Invalid", error);
         });
@@ -86,14 +105,16 @@ const RestaurantMenu = (props) => {
 
     useEffect(()=>{
       getRestaurantID()
+      
          
     },[])
 
+   
 
     const menuItem = menuList.map((item,index)=>{
       return(
         <Col key={index} className="d-flex justify-content-center" md={"auto"} sm={12}>
-        <button id={index} className="lead-2 mt-3" onClick={(e)=>console.log("menu btn",e.target.id)}>{item}</button>
+        <button id={index} className="lead-2 mt-3" onClick={(e)=>showDishesAccordingtoMenu(index)}>{item}</button>
       </Col>
       )
     })
@@ -138,6 +159,7 @@ const RestaurantMenu = (props) => {
       // console.log("dishes",foodMenu[mid].categories[cid].dishes)
       setSelectedDishes(foodMenu[mid].categories[cid].dishes)
       console.log("dishes",selectedDishes)
+      document.getElementById("dishes").scrollIntoView();
     }
 
     const catItem = catList.map((item,index)=>{
@@ -149,7 +171,7 @@ const RestaurantMenu = (props) => {
     })
 
     const dishItem = selectedDishes.map((item,index)=>{
-     return <Col md={6} lg={6} key={index}>
+     return <Col md={6} lg={6} key={index} >
             <Container className="mt-5" >
               <Row className="g-0">
                 <Col md={6} lg={6} className="bg-buttery-white" >
@@ -169,7 +191,7 @@ const RestaurantMenu = (props) => {
                   </Row>
                 </Col>
                 <Col md={6} lg={6} className="d-flex flex-column">
-                  <Image className="w-100 h-100" src={item.imgUrl} />
+                  <Image className="w-100 h-100 img-thumbnail" src={item.imgUrl} />
                 </Col>
               </Row>
             </Container>
@@ -210,7 +232,7 @@ const RestaurantMenu = (props) => {
                  <h3 className="h3 fw-bold d-flex stify-content-center">{viewDish[0].dishDesc}</h3>
              </div>
 
-             <Image className="w-100 h-100" src={viewDish[0].imgUrl} />
+             <Image className="w-100 img-responsive" src={viewDish[0].imgUrl} />
              <div>
                 <Table>
                     <thead >
@@ -290,7 +312,7 @@ const RestaurantMenu = (props) => {
         </Col>
       </Row>
 
-      <Container className="mt-5">
+      <Container className="mt-5 mb-5">
         <Row className="d-flex justify-content-center">
           <Col className="d-flex justify-content-center" md={"auto"} sm={12}>
             <p className="lead-2 mt-3">Picked for you</p>
@@ -302,7 +324,7 @@ const RestaurantMenu = (props) => {
       </Container>
 
 
-      <Container>
+      <Container className="mt-5 mb-5" id="dishes">
         <Row>
         {/* Loop dish here */}
           {showDishesList?(dishItem):(false)}
