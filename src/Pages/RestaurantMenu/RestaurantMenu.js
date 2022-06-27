@@ -52,11 +52,12 @@ const RestaurantMenu = (props) => {
 
 
 
-    const showDishesAccordingtoMenu = (mid) =>{
-      console.log(mid)
-      setSelectedMenu({mid,cid:0})
+    const showDishesAccordingtoMenu = (data) =>{
+      let mid=0
+      let cid=0
+      setSelectedMenu({mid,cid})
       // console.log("dishes",foodMenu[mid].categories[cid].dishes)
-      setSelectedDishes(foodMenu[mid].categories[0].dishes)
+      setSelectedDishes(data[mid].categories[0].dishes)
       console.log("dishes",selectedDishes)
       document.getElementById("dishes").scrollIntoView();
     }
@@ -92,11 +93,11 @@ const RestaurantMenu = (props) => {
               })
               
           })
-          console.log("loded")
+          console.log("loded",data[0].categories[0].dishes)
+          showDishesAccordingtoMenu(data)
           
         })
         .then((()=>{
-        
         }))
         .catch((error) => {
           console.error("Invalid", error);
