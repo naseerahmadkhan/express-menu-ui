@@ -80,7 +80,7 @@ const Dashboard = () => {
       
       .catch((error) => {
         console.error("Invalid Token", error);
-        notify("Token is expired! Please Re-login");
+        notify(`Error:> ${error}`);
         // navigate("/login");
       })
       .finally(() => {
@@ -210,7 +210,7 @@ const Dashboard = () => {
   },[]);
 
   //Display progress step windows under progress step bar in return----------
-  let progressStep = <h1>default</h1>
+  let progressStep ;
   switch(stepper){
     case 0:
       progressStep = <Terms isTermAccepted={(v) => handleStep("terms", v)} />
@@ -229,11 +229,12 @@ const Dashboard = () => {
         break; 
 
         case 4:
+          setStepper(5);
         progressStep = <h1 className="display-6">Completed</h1>
         break; 
 
       default:
-        progressStep = <Terms isTermAccepted={(v) => handleStep("terms", v)} />
+        // progressStep = <Terms isTermAccepted={(v) => handleStep("terms", v)} />
         break;  
   }
   

@@ -44,7 +44,7 @@ const AddDishesPage = (props) => {
   const [size, setSize] = useState("");
   const [price, setPrice] = useState("");
 
-  const [stdDishPrice, setStdDishPrice] = useState();
+  const [stdDishPrice, setStdDishPrice] = useState(0);
   const [imgData,setImgData] = useState()
   const [imgUrl,setImgUrl] = useState()
 

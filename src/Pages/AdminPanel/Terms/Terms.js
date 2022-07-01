@@ -2,6 +2,7 @@ import React,{useState,useContext} from 'react'
 import { Row,Col,Form } from "react-bootstrap";
 import Btn from '../../../Components/Btn/Btn';
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 import { AppContext } from '../../../App';
 const Terms = (props) => {
@@ -9,11 +10,25 @@ const Terms = (props) => {
   const [isAccepted,sestIsAccepted] = useState(false)
     const storeData = useContext(AppContext);
 
+    //Notify popup-------------------------
+  const notify = (msg) =>
+  toast.warn(msg, {
+    icon: "ℹ️",
+    position: "top-center",
+    autoClose: 8000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+//-------------------------------------
+
 
     const handleSubmit = (e) =>{
       //calling parent func with two args
       // e.preventDefaults()
-      props.isTermAccepted("terms",isAccepted)
+      isAccepted?(props.isTermAccepted("terms",isAccepted)):(notify(`Please accept the terms and conditions!`))
     }
    
 

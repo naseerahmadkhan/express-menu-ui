@@ -192,7 +192,7 @@ const RestaurantMenu = (props) => {
                   </Row>
                 </Col>
                 <Col md={6} lg={6} className="d-flex flex-column">
-                  <Image className="w-100 h-100 img-thumbnail" src={item.imgUrl} />
+                  <Image className="w-100 h-100" src={item.imgUrl} />
                 </Col>
               </Row>
             </Container>

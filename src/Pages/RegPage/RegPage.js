@@ -61,6 +61,7 @@ const RegPage = () => {
         },
     ];
 
+    
     UserPool.signUp(email, pwd, attributeList, null, (err, data) => {
       if (err) {
         console.error(JSON.stringify(err.name));
