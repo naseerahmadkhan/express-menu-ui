@@ -183,11 +183,11 @@ const BankAccount = (props) => {
   
     <div  className="mb-3 mt-5">
       <Form.Check type="radio" id={`payment`} >
-        <Form.Check.Input type="radio" name="payment"  onChange={e=>{setPaymentOption("cash")}} />
+        <Form.Check.Input type="radio" name="payment"  onChange={e=>{setPaymentOption("cash")}} defaultChecked/>
         <Form.Check.Label className="p-3">{`Receive CASH at counter`}</Form.Check.Label>
       </Form.Check>
       <Form.Check type="radio" id={`payment1`}>
-        <Form.Check.Input type="radio" name="payment"  onChange={e=>setPaymentOption("bank")}/>
+        <Form.Check.Input type="radio" name="payment"  onChange={e=>setPaymentOption("bank")} />
         <Form.Check.Label className="p-3">{`Setup Bank to receive`}</Form.Check.Label>
       </Form.Check>
       {/* <button onClick={e=>{e.preventDefault();console.log("clicked on",paymentOption)}}>check</button> */}
